@@ -1,0 +1,266 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const navItems = [
+  { label: 'Is This You?', href: '#symptoms' },
+  { label: 'Approach', href: '#approach' },
+  { label: 'About', href: '#about' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<nav class:list={['nav', className]}>
+  <div class="nav-inner container">
+    <a href="/" class="logo">
+      <span class="logo-text">Restore</span>
+    </a>
+
+    <ul class="nav-links hide-mobile">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="#book" class="nav-cta">
+      Book a call
+    </a>
+
+    <button class="nav-toggle hide-desktop" aria-label="Toggle menu" aria-expanded="false">
+      <span class="toggle-bar"></span>
+      <span class="toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu hide-desktop" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    {navItems.map((item) => (
+      <li>
+        <a href={item.href} class="mobile-link">
+          {item.label}
+        </a>
+      </li>
+    ))}
+    <li>
+      <a href="#book" class="mobile-link mobile-cta">
+        Book a call
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    padding: var(--space-sm) 0;
+    background: transparent;
+    transition: all var(--duration-normal) var(--ease-calm);
+  }
+
+  .nav.scrolled {
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  [data-theme="dark"] .nav.scrolled {
+    background: var(--bg-primary);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .logo:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+  }
+
+  .nav-link {
+    position: relative;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast) var(--ease-calm);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-cta {
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--bg-primary);
+    background: var(--cta);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-normal) var(--ease-calm);
+  }
+
+  .nav-cta:hover {
+    color: var(--bg-primary);
+    background: var(--cta-hover);
+    transform: translateY(-1px);
+  }
+
+  /* Mobile toggle */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-xs);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .toggle-bar {
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 1px;
+    transition: all var(--duration-fast) var(--ease-calm);
+  }
+
+  .nav-toggle[aria-expanded="true"] .toggle-bar:first-child {
+    transform: rotate(45deg) translate(2px, 5px);
+  }
+
+  .nav-toggle[aria-expanded="true"] .toggle-bar:last-child {
+    transform: rotate(-45deg) translate(2px, -5px);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-overlay);
+    background: var(--bg-primary);
+    padding: var(--space-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--duration-normal) var(--ease-calm);
+  }
+
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .mobile-link {
+    display: block;
+    padding: var(--space-sm);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-cta {
+    margin-top: var(--space-md);
+    text-align: center;
+    color: var(--bg-primary);
+    background: var(--cta);
+    border-radius: var(--radius-md);
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-cta {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Scroll detection for nav background
+  const nav = document.querySelector('.nav');
+  const scrollThreshold = 50;
+
+  function updateNav() {
+    if (window.scrollY > scrollThreshold) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // Mobile menu toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!isOpen).toString());
+    mobileMenu?.classList.toggle('is-open');
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.classList.remove('is-open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

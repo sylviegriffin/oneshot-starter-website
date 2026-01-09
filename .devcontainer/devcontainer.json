@@ -1,0 +1,38 @@
+{
+  "name": "Vibe Architect",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro Dev Server",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
+  "postCreateCommand": "npm install",
+  "postStartCommand": ".devcontainer/start.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-vscode.simple-browser"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.autoSave": "onFocusChange",
+        "simpleBrowser.focusLockIndicator.enabled": false
+      }
+    },
+    "codespaces": {
+      "openFiles": ["src/pages/index.astro"]
+    }
+  },
+  "waitFor": "onCreateCommand"
+}

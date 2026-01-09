@@ -1,0 +1,166 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'Is This You?', href: '#symptoms' },
+  { label: 'Approach', href: '#approach' },
+  { label: 'About', href: '#about' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          Restore
+        </a>
+        <p class="footer-tagline">
+          Executive burnout recovery for high-performers who can't afford to slow down.
+        </p>
+      </div>
+
+      <nav class="footer-nav">
+        <h4 class="footer-heading">Navigation</h4>
+        <ul class="footer-links">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="mailto:hello@restore-coaching.com">hello@restore-coaching.com</a>
+          </li>
+          <li>
+            <a href="#book">Book a call</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {currentYear} Restore. All rights reserved.
+      </p>
+      <p class="legal">
+        <a href="/privacy">Privacy</a>
+        <span class="separator">·</span>
+        <a href="/terms">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-lg);
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .logo {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .logo:hover {
+    color: var(--text-primary);
+  }
+
+  .footer-tagline {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 300px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .footer-heading {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .footer-links a {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast) var(--ease-calm);
+  }
+
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .copyright {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .legal {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+  }
+
+  .legal a {
+    color: var(--text-muted);
+  }
+
+  .legal a:hover {
+    color: var(--text-primary);
+  }
+
+  .separator {
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: var(--space-sm);
+      text-align: center;
+    }
+  }
+</style>

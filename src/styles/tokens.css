@@ -1,0 +1,204 @@
+/*
+ * DESIGN TOKENS — "Grounded Warmth"
+ * The DNA of the design system
+ *
+ * Visual metaphor: A private study at dusk
+ * Emotion: Relief, recognition, quiet permission
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════
+     COLOR TOKENS — "Grounded Warmth" Palette
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* Backgrounds — warm paper tones */
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F0EDE8;
+  --bg-elevated: #FFFFFF;
+  --bg-subtle: #E8E4DD;
+
+  /* Text hierarchy — warm charcoals */
+  --text-primary: #2D2926;
+  --text-secondary: #6B645C;
+  --text-muted: #8A837A;
+  --text-faint: #B8B2A8;
+
+  /* Accent — burnished bronze */
+  --accent: #8B7355;
+  --accent-hover: #7A6449;
+  --accent-muted: rgba(139, 115, 85, 0.12);
+  --accent-light: #A89070;
+
+  /* CTA — deep forest green */
+  --cta: #2F4538;
+  --cta-hover: #253929;
+  --cta-muted: rgba(47, 69, 56, 0.1);
+
+  /* Semantic */
+  --success: #4A7C59;
+  --warning: #B8860B;
+  --error: #9B4444;
+
+  /* Borders & Dividers */
+  --border: #E5E1DB;
+  --border-hover: #D6D1C9;
+  --border-strong: #C9C3B8;
+
+  /* ═══════════════════════════════════════════════════════════════
+     DARK MODE — "Night Paper"
+     ═══════════════════════════════════════════════════════════════ */
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1A1815;
+  --bg-secondary: #252220;
+  --bg-elevated: #2D2A27;
+  --bg-subtle: #353230;
+
+  --text-primary: #F5F2ED;
+  --text-secondary: #C4BFB6;
+  --text-muted: #8A857C;
+  --text-faint: #5A564F;
+
+  --accent: #B89B7A;
+  --accent-hover: #CDAE8F;
+  --accent-muted: rgba(184, 155, 122, 0.15);
+  --accent-light: #D4BA9A;
+
+  --cta: #5A7D66;
+  --cta-hover: #6B9178;
+  --cta-muted: rgba(90, 125, 102, 0.15);
+
+  --border: #3A3633;
+  --border-hover: #4A4643;
+  --border-strong: #5A5653;
+}
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════
+     TYPOGRAPHY — Elegant & Trustworthy
+     ═══════════════════════════════════════════════════════════════ */
+
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scale (fluid) — generous for readability */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --text-4xl: clamp(2.5rem, 1.75rem + 3.75vw, 4rem);
+  --text-hero: clamp(2.75rem, 1.5rem + 6.25vw, 5.5rem);
+
+  /* Line heights — generous for calm reading */
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+
+  /* Letter spacing */
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.12em;
+
+  /* Font weights */
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ═══════════════════════════════════════════════════════════════
+     SPACING — Generous & Calm
+     ═══════════════════════════════════════════════════════════════ */
+
+  --space-3xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+  --space-sm: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --space-lg: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --space-xl: clamp(3rem, 2.25rem + 3.75vw, 5rem);
+  --space-2xl: clamp(4rem, 3rem + 5vw, 7rem);
+  --space-3xl: clamp(6rem, 4.5rem + 7.5vw, 10rem);
+
+  /* ═══════════════════════════════════════════════════════════════
+     ANIMATION — Slow & Deliberate (Unhurried Confidence)
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* Durations — deliberately slower for calm feeling */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 600ms;
+  --duration-slower: 800ms;
+  --duration-slowest: 1200ms;
+
+  /* Easing curves — smooth and organic */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Custom curves for this project */
+  --ease-calm: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-breathe: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+  /* ═══════════════════════════════════════════════════════════════
+     BORDERS & RADII — Subtle & Refined
+     ═══════════════════════════════════════════════════════════════ */
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ═══════════════════════════════════════════════════════════════
+     SHADOWS — Soft & Grounded
+     ═══════════════════════════════════════════════════════════════ */
+
+  --shadow-sm: 0 1px 2px rgba(45, 41, 38, 0.04), 0 1px 3px rgba(45, 41, 38, 0.06);
+  --shadow-md: 0 4px 6px rgba(45, 41, 38, 0.04), 0 2px 4px rgba(45, 41, 38, 0.06);
+  --shadow-lg: 0 10px 15px rgba(45, 41, 38, 0.06), 0 4px 6px rgba(45, 41, 38, 0.04);
+  --shadow-xl: 0 20px 25px rgba(45, 41, 38, 0.08), 0 10px 10px rgba(45, 41, 38, 0.04);
+
+  /* ═══════════════════════════════════════════════════════════════
+     LAYOUT
+     ═══════════════════════════════════════════════════════════════ */
+
+  --max-width-prose: 65ch;
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1200px;
+  --max-width-2xl: 1400px;
+
+  --container-padding: clamp(1.25rem, 5vw, 2.5rem);
+
+  /* ═══════════════════════════════════════════════════════════════
+     Z-INDEX SCALE
+     ═══════════════════════════════════════════════════════════════ */
+
+  --z-below: -1;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-max: 9999;
+}

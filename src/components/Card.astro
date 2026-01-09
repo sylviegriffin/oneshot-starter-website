@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  href?: string;
+  tag?: string;
+  class?: string;
+}
+
+const { title, description, href, tag, class: className } = Astro.props;
+const Element = href ? 'a' : 'div';
+---
+
+<Element href={href} class:list={['card', { 'card-link': href }, className]}>
+  {tag && <span class="card-tag">{tag}</span>}
+  
+  <div class="card-content">
+    <h3 class="card-title">
+      {title}
+      {href && (
+        <svg class="card-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      )}
+    </h3>
+    {description && <p class="card-description">{description}</p>}
+  </div>
+  
+  <div class="card-glow"></div>
+</Element>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background: var(--bg-secondary);
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .card-link {
+    cursor: pointer;
+  }
+
+  .card-link:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--bg-elevated);
+  }
+
+  .card-link:hover .card-arrow {
+    transform: translate(4px, -4px);
+  }
+
+  .card-link:hover .card-glow {
+    opacity: 1;
+  }
+
+  .card-tag {
+    align-self: flex-start;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-primary);
+    background: rgba(0, 255, 208, 0.1);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .card-content {
+    flex: 1;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .card-arrow {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: all var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(0, 255, 208, 0.06),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out-quart);
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  // Mouse glow effect
+  document.querySelectorAll('.card-link').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = (e as MouseEvent).clientX - rect.left;
+      const y = (e as MouseEvent).clientY - rect.top;
+      (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+      (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+</script>
+

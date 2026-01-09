@@ -1,0 +1,84 @@
+---
+interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  class?: string;
+  background?: 'primary' | 'secondary';
+  centered?: boolean;
+}
+
+const {
+  id,
+  title,
+  subtitle,
+  class: className,
+  background = 'primary',
+  centered = false
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'section',
+    `bg-${background}`,
+    { centered },
+    className
+  ]}
+>
+  <div class="container">
+    {(title || subtitle) && (
+      <header class="section-header" data-reveal>
+        {subtitle && <span class="section-subtitle">{subtitle}</span>}
+        {title && <h2 class="section-title balance">{title}</h2>}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .bg-primary {
+    background: var(--bg-primary);
+  }
+
+  .bg-secondary {
+    background: var(--bg-secondary);
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .centered .section-header {
+    margin-inline: auto;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+  }
+
+  .section-subtitle {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-title {
+    max-width: 600px;
+  }
+
+  .centered .section-title {
+    margin-inline: auto;
+  }
+</style>
